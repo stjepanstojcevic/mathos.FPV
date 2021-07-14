@@ -18,3 +18,4 @@ public class CameraFollow : MonoBehaviour
         transform.rotation = Quaternion.Euler(new Vector3(angle, ourDrone.GetComponent<Skripta_za_kretanje>().currentYRotation, 0));
     }
 }
+/*el radi*/
