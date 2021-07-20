@@ -118,7 +118,7 @@ public class CustomatizationManager : MonoBehaviour
 
                 activeProp = GameObject.Instantiate(propModel[id]);
                 activeProp.transform.SetParent(propAnchor);
-                //activeProp.transform.position = new Vector3(0, 0, 0);
+                activeBody.transform.ResetTransform();
                 break;
 
             case AppearanceDetail.MOTOR_MODEL:
@@ -136,7 +136,7 @@ public class CustomatizationManager : MonoBehaviour
 
                 activeBody = GameObject.Instantiate(bodyModel[id]);
                 activeBody.transform.SetParent(bodyAnchor);
-                //activeBody.transform.ResetTransform();
+                activeBody.transform.ResetTransform();
                 break;
         }
     }
@@ -289,7 +289,7 @@ public class CustomatizationManager : MonoBehaviour
 
         }
 
+
     }
-
-
 }
+
