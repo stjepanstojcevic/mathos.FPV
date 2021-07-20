@@ -5,7 +5,7 @@ using System.Text;
 using System.IO;
 using UnityEngine.SceneManagement;
 
-public class CustomatizationManager : MonoBehaviour
+public class Customatization2 : MonoBehaviour
 {
     enum AppearanceDetail
     {
@@ -269,16 +269,16 @@ public class CustomatizationManager : MonoBehaviour
 
         string DroneGlavniPath = m_Path + "/scripts/Json/GlavniDron.json";
         File.WriteAllText(m_Path, json);
-    } 
-
-
-    
+    }
 
 
 
 
 
-    
+
+
+
+
 
     private void Update()
     {
@@ -304,5 +304,6 @@ public class CustomatizationManager : MonoBehaviour
 
 
 }
+
 
 

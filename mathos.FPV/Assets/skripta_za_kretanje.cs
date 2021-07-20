@@ -1,4 +1,4 @@
-/*using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
 public class skripta_za_kretanje : MonoBehaviour
@@ -35,7 +35,7 @@ public class skripta_za_kretanje : MonoBehaviour
     {
         nagib = noviNagib;
     }*/
-/*private float upForce;
+private float upForce;
 void settingUpForce()
 {
     upForce = snaga / masa;
@@ -150,11 +150,11 @@ void Skretanja()
         tiltAmoundSideways = Mathf.SmoothDamp(tiltAmoundSideways, 0, ref tiltAmoundVelocity, 0.1f);
     }
 }
-}*/
+}
 
 
 
-
+/*
 
 using UnityEngine;
 using System.Collections;
@@ -335,3 +335,4 @@ public class skripta_za_kretanje : MonoBehaviour
 
 
 
+*/
