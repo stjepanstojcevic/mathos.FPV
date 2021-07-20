@@ -275,11 +275,6 @@ public class Customatization2 : MonoBehaviour
 
 
 
-
-
-
-
-
     private void Update()
     {
         if (i == 1)
@@ -299,11 +294,7 @@ public class Customatization2 : MonoBehaviour
             }
         }
         i = i + 1;
-    }
-
-
-
-}
+    }}
 
 
 
