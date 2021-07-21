@@ -22,7 +22,7 @@ public class skripta_za_kretanje : MonoBehaviour
     }
     private float nagib=20;
     private float masa=1;
-    private float snaga=450;
+    private float snaga=800;
     /*public void masaSlider(float novaMasa)
     {
         masa = novaMasa;
