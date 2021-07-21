@@ -34,6 +34,7 @@ public class CustomatizationManager : MonoBehaviour
     GameObject activeBody;
 
     int i = 0;
+    int racunanjedrona = -1;
 
     public string myRecepie;
 
@@ -159,6 +160,10 @@ public class CustomatizationManager : MonoBehaviour
         string m_Path = Application.dataPath;
         m_Path = m_Path + "/scripts/Json/Drone1.json";
         File.WriteAllText(m_Path, json);
+        if (racunanjedrona == -1)
+        {
+            racunanjedrona += 1;
+        }
 
 
     }
@@ -175,6 +180,10 @@ public class CustomatizationManager : MonoBehaviour
         string m_Path = Application.dataPath;
         m_Path = m_Path + "/scripts/Json/Drone2.json";
         File.WriteAllText(m_Path, json);
+        if (racunanjedrona == -1)
+        {
+            racunanjedrona += 1;
+        }
     }
     public void SaveApperance3()
     {
@@ -189,6 +198,11 @@ public class CustomatizationManager : MonoBehaviour
         string m_Path = Application.dataPath;
         m_Path = m_Path + "/scripts/Json/Drone3.json";
         File.WriteAllText(m_Path, json);
+
+        if (racunanjedrona == -1)
+        {
+            racunanjedrona += 1;
+        }
     }
     public void SaveApperance4()
     {
@@ -203,6 +217,10 @@ public class CustomatizationManager : MonoBehaviour
         string m_Path = Application.dataPath;
         m_Path = m_Path + "/scripts/Json/Drone4.json";
         File.WriteAllText(m_Path, json);
+        if (racunanjedrona == -1)
+        {
+            racunanjedrona += 1;
+        }
     }
 
 
@@ -269,16 +287,101 @@ public class CustomatizationManager : MonoBehaviour
 
         string DroneGlavniPath = m_Path + "/scripts/Json/GlavniDron.json";
         File.WriteAllText(m_Path, json);
-    } 
+    }
+    public void PreloadDrone(){
+        string m_Path = Application.dataPath;
+        m_Path = m_Path + "/scripts/Json/PreloadDrone.json";
+        string json = File.ReadAllText(m_Path);
 
+        myObject = JsonUtility.FromJson<MyClass>(json);
+
+        ApplyModification(AppearanceDetail.PROP_MODEL, myObject.PROPMODEL);
+        ApplyModification(AppearanceDetail.MOTOR_MODEL, myObject.MOTORMODEL);
+        ApplyModification(AppearanceDetail.BODY_MODEL, myObject.BODYMODEL);
+     
+        string DroneGlavniPath = m_Path + "/scripts/Json/GlavniDron.json";
+        File.WriteAllText(m_Path, json);
+    
+}
+
+
+
+    public void MotoriUcitavanje()
+    {
+
+
+        
+
+
+
+
+
+
+
+    }
 
     
+    public void DroneModelUp()
+    {
+        /*
+        if (racunanjedrona == -1)
+        {
+            PreloadDrone();
+        }
+        else
+        {
+            if (racunanjedrona < bodyModel.Length - 1)
+                racunanjedrona++;
+            else
+                racunanjedrona = 0;
 
+            if (racunanjedrona == 0)
+                LoadApperance1();
+            else if (racunanjedrona == 1)
+                LoadApperance2();
+            else if (racunanjedrona == 2)
+                LoadApperance3();
+            else if (racunanjedrona == 3)
+                LoadApperance4();
+        }*/
+    }
 
+    public void DroneModelDown()
+    {
+        /*
+        if (racunanjedrona == -1)
+        {
+            PreloadDrone();
+        }
+        else
+        {
 
+            if (racunanjedrona > 0)
+                racunanjedrona--;
+            else
+                racunanjedrona = bodyModel.Length - 1;
 
+            if (racunanjedrona == 0)
+                LoadApperance1();
+            else if (racunanjedrona == 1)
+                LoadApperance2();
+            else if (racunanjedrona == 2)
+                LoadApperance3();
+            else if (racunanjedrona == 3)
+                LoadApperance4();
 
-    
+            if (racunanjedrona == -1)
+            {
+                PreloadDrone();
+            }
+        }*/
+
+    }
+ /*   private void Start()
+    {
+        PreloadDrone();
+    }*/
+
 
     private void Update()
     {
