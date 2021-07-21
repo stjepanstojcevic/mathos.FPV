@@ -1,13 +1,16 @@
-using UnityEngine;
+/*using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
-public class Skripta_za_kretanje : MonoBehaviour
+
+public class Kretanje : MonoBehaviour
 {
     Rigidbody ourDrone;
+
     void Awake()
     {
         ourDrone = GetComponent<Rigidbody>();
     }
+
     void FixedUpdate()
     {
         MovementUpDown();
@@ -15,15 +18,20 @@ public class Skripta_za_kretanje : MonoBehaviour
         Rotation();
         ClampingSpeedValues();
         Skretanja();
+
         ourDrone.AddRelativeForce(Vector3.up * upForce);
         ourDrone.rotation = Quaternion.Euler(
             new Vector3(tiltAmoundForward, currentYRotation, tiltAmoundSideways)
         );
+
     }
-    public float nagib = 20;
-    public float masa = 1;
-    public float snaga = 450;
-    /*public void masaSlider(float novaMasa)
+
+    public float nagib;
+    public float masa;
+    public float snaga;
+
+
+    public void masaSlider(float novaMasa)
     {
         masa = novaMasa;
     }
@@ -34,7 +42,8 @@ public class Skripta_za_kretanje : MonoBehaviour
     public void nagibSlider(float noviNagib)
     {
         nagib = noviNagib;
-    }*/
+    }
+
     private float upForce;
     void settingUpForce()
     {
@@ -62,11 +71,16 @@ public class Skripta_za_kretanje : MonoBehaviour
             {
                 upForce /= 1.1f;
             }
+
         }
+
         if (Mathf.Abs(Input.GetAxis("Vertical")) < 0.2f && Mathf.Abs(Input.GetAxis("Horizontal")) > 0.2f)
         {
             upForce /= 3.3f;
         }
+
+
+
         if (Input.GetKey(KeyCode.I))
         {
             upForce = snaga / masa;
@@ -84,6 +98,8 @@ public class Skripta_za_kretanje : MonoBehaviour
         {
             upForce = -98.1f * masa;
         }
+
+
     }
     private float movementForwardSpeed = 500.0f;
     private float tiltAmoundForward = 0;
@@ -97,7 +113,6 @@ public class Skripta_za_kretanje : MonoBehaviour
 
         }
     }
-    //tiltAmoundForward, nagib * Input.GetAxis("Vertical") / 2 , ref titltVelocityForward, 0.1f
 
     private float wantedYRotation;
     [HideInInspector] public float currentYRotation;
@@ -113,8 +128,11 @@ public class Skripta_za_kretanje : MonoBehaviour
         {
             wantedYRotation += rotateAmountByKEys;
         }
+
         currentYRotation = Mathf.SmoothDamp(currentYRotation, wantedYRotation, ref rotationYVelocity, 0.25f);
     }
+
+
     private Vector3 velocityUsporavanja;
     void ClampingSpeedValues()
     {
@@ -135,6 +153,9 @@ public class Skripta_za_kretanje : MonoBehaviour
             ourDrone.velocity = Vector3.SmoothDamp(ourDrone.velocity, Vector3.zero, ref velocityUsporavanja, 0.95f);
         }
     }
+
+
+
     private float sideMovementAmount = 300.0f;
     private float tiltAmoundSideways;
     private float tiltAmoundVelocity;
@@ -149,5 +170,8 @@ public class Skripta_za_kretanje : MonoBehaviour
         {
             tiltAmoundSideways = Mathf.SmoothDamp(tiltAmoundSideways, 0, ref tiltAmoundVelocity, 0.1f);
         }
+
     }
+
 }
+*/

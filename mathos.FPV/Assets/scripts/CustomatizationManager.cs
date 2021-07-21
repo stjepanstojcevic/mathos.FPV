@@ -23,18 +23,15 @@ public class CustomatizationManager : MonoBehaviour
 
 
     public class MyClass
-    {
+        {
         public int PROPMODEL;
         public int MOTORMODEL;
         public int BODYMODEL;
-    }
+        }
 
     GameObject activeProp;
     GameObject activeMotor;
     GameObject activeBody;
-
-    int i = 0;
-    int racunanjedrona = -1;
 
     public string myRecepie;
 
@@ -121,7 +118,7 @@ public class CustomatizationManager : MonoBehaviour
 
                 activeProp = GameObject.Instantiate(propModel[id]);
                 activeProp.transform.SetParent(propAnchor);
-                //activeBody.transform.ResetTransform();
+                //activeProp.transform.position = new Vector3(0, 0, 0);
                 break;
 
             case AppearanceDetail.MOTOR_MODEL:
@@ -130,7 +127,7 @@ public class CustomatizationManager : MonoBehaviour
 
                 activeMotor = GameObject.Instantiate(motorModel[id]);
                 activeMotor.transform.SetParent(motorAnchor);
-                activeMotor.transform.ResetTransform();
+                //activeMotor.transform.ResetTransform();
                 break;
 
             case AppearanceDetail.BODY_MODEL:
@@ -139,31 +136,26 @@ public class CustomatizationManager : MonoBehaviour
 
                 activeBody = GameObject.Instantiate(bodyModel[id]);
                 activeBody.transform.SetParent(bodyAnchor);
-                activeBody.transform.ResetTransform();
+                //activeBody.transform.ResetTransform();
                 break;
         }
     }
     MyClass myObject = new MyClass();
-
-
+    
 
     public void SaveApperance1()
     {
+        
 
-
-        myObject.PROPMODEL = propIndex;
-        myObject.MOTORMODEL = motorIndex;
-        myObject.BODYMODEL = bodyIndex;
+        myObject.PROPMODEL=propIndex;
+        myObject.MOTORMODEL=motorIndex;
+        myObject.BODYMODEL=bodyIndex;
 
         string json = JsonUtility.ToJson(myObject);
 
         string m_Path = Application.dataPath;
         m_Path = m_Path + "/scripts/Json/Drone1.json";
         File.WriteAllText(m_Path, json);
-        if (racunanjedrona == -1)
-        {
-            racunanjedrona += 1;
-        }
 
 
     }
@@ -180,10 +172,6 @@ public class CustomatizationManager : MonoBehaviour
         string m_Path = Application.dataPath;
         m_Path = m_Path + "/scripts/Json/Drone2.json";
         File.WriteAllText(m_Path, json);
-        if (racunanjedrona == -1)
-        {
-            racunanjedrona += 1;
-        }
     }
     public void SaveApperance3()
     {
@@ -198,11 +186,6 @@ public class CustomatizationManager : MonoBehaviour
         string m_Path = Application.dataPath;
         m_Path = m_Path + "/scripts/Json/Drone3.json";
         File.WriteAllText(m_Path, json);
-
-        if (racunanjedrona == -1)
-        {
-            racunanjedrona += 1;
-        }
     }
     public void SaveApperance4()
     {
@@ -216,19 +199,13 @@ public class CustomatizationManager : MonoBehaviour
 
         string m_Path = Application.dataPath;
         m_Path = m_Path + "/scripts/Json/Drone4.json";
-        File.WriteAllText(m_Path, json);
-        if (racunanjedrona == -1)
-        {
-            racunanjedrona += 1;
-        }
-    }
+        File.WriteAllText(m_Path, json); }
 
 
 
 
 
-    public void LoadApperance1()
-    {
+    public void LoadApperance1(){
         string m_Path = Application.dataPath;
         m_Path = m_Path + "/scripts/Json/Drone1.json";
         string json = File.ReadAllText(m_Path);
@@ -238,8 +215,8 @@ public class CustomatizationManager : MonoBehaviour
         ApplyModification(AppearanceDetail.PROP_MODEL, myObject.PROPMODEL);
         ApplyModification(AppearanceDetail.MOTOR_MODEL, myObject.MOTORMODEL);
         ApplyModification(AppearanceDetail.BODY_MODEL, myObject.BODYMODEL);
-
-        string DroneGlavniPath = m_Path + "/scripts/Json/GlavniDron.json";
+        
+        string DroneGlavniPath=m_Path + "/scripts/Json/GlavniDron.json";
         File.WriteAllText(m_Path, json);
     }
     public void LoadApperance2()
@@ -253,9 +230,6 @@ public class CustomatizationManager : MonoBehaviour
         ApplyModification(AppearanceDetail.PROP_MODEL, myObject.PROPMODEL);
         ApplyModification(AppearanceDetail.MOTOR_MODEL, myObject.MOTORMODEL);
         ApplyModification(AppearanceDetail.BODY_MODEL, myObject.BODYMODEL);
-
-        string DroneGlavniPath = m_Path + "/scripts/Json/GlavniDron.json";
-        File.WriteAllText(m_Path, json);
     }
     public void LoadApperance3()
     {
@@ -268,11 +242,7 @@ public class CustomatizationManager : MonoBehaviour
         ApplyModification(AppearanceDetail.PROP_MODEL, myObject.PROPMODEL);
         ApplyModification(AppearanceDetail.MOTOR_MODEL, myObject.MOTORMODEL);
         ApplyModification(AppearanceDetail.BODY_MODEL, myObject.BODYMODEL);
-
-        string DroneGlavniPath = m_Path + "/scripts/Json/GlavniDron.json";
-        File.WriteAllText(m_Path, json);
     }
-
     public void LoadApperance4()
     {
         string m_Path = Application.dataPath;
@@ -284,129 +254,33 @@ public class CustomatizationManager : MonoBehaviour
         ApplyModification(AppearanceDetail.PROP_MODEL, myObject.PROPMODEL);
         ApplyModification(AppearanceDetail.MOTOR_MODEL, myObject.MOTORMODEL);
         ApplyModification(AppearanceDetail.BODY_MODEL, myObject.BODYMODEL);
-
-        string DroneGlavniPath = m_Path + "/scripts/Json/GlavniDron.json";
-        File.WriteAllText(m_Path, json);
     }
-    public void PreloadDrone(){
-        string m_Path = Application.dataPath;
-        m_Path = m_Path + "/scripts/Json/PreloadDrone.json";
-        string json = File.ReadAllText(m_Path);
 
-        myObject = JsonUtility.FromJson<MyClass>(json);
-
-        ApplyModification(AppearanceDetail.PROP_MODEL, myObject.PROPMODEL);
-        ApplyModification(AppearanceDetail.MOTOR_MODEL, myObject.MOTORMODEL);
-        ApplyModification(AppearanceDetail.BODY_MODEL, myObject.BODYMODEL);
-     
-        string DroneGlavniPath = m_Path + "/scripts/Json/GlavniDron.json";
-        File.WriteAllText(m_Path, json);
-    
-}
-
-
-
-    public void MotoriUcitavanje()
+    public void Pokretac()
     {
 
 
-        
-
-
-
-
-
-
-
     }
-
-    
-    public void DroneModelUp()
-    {
-        
-        
-        if (racunanjedrona == -1)
-        {
-            PreloadDrone();
-        }
-        else
-        {
-            if (racunanjedrona < bodyModel.Length - 1)
-                racunanjedrona++;
-            else
-                racunanjedrona = 0;
-
-            if (racunanjedrona == 0)
-                LoadApperance1();
-            else if (racunanjedrona == 1)
-                LoadApperance2();
-            else if (racunanjedrona == 2)
-                LoadApperance3();
-            else if (racunanjedrona == 3)
-                LoadApperance4();
-        }
-    }
-
-    public void DroneModelDown()
-    {
-        /*
-        if (racunanjedrona == -1)
-        {
-            PreloadDrone();
-        }
-        else
-        {
-
-            if (racunanjedrona > 0)
-                racunanjedrona--;
-            else
-                racunanjedrona = bodyModel.Length - 1;
-
-            if (racunanjedrona == 0)
-                LoadApperance1();
-            else if (racunanjedrona == 1)
-                LoadApperance2();
-            else if (racunanjedrona == 2)
-                LoadApperance3();
-            else if (racunanjedrona == 3)
-                LoadApperance4();
-
-            if (racunanjedrona == -1)
-            {
-                PreloadDrone();
-            }
-        }*/
-
-    }
- /*   private void Start()
-    {
-        PreloadDrone();
-    }*/
-
-
     private void Update()
     {
-        if (i == 1)
-        {
-            if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("GameScene"))
-            {
-                string m_Path = Application.dataPath;
-                m_Path = m_Path + "/scripts/Json/GlavniDron.json";
+        if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("GameScene")) 
+         {
 
-                string json = File.ReadAllText(m_Path);
+                string filePath = @"C:\Users\renat\OneDrive\Desktop\loadinclass\Assets\Scrips\savedron.json";
+                string json = File.ReadAllText(filePath);
 
                 myObject = JsonUtility.FromJson<MyClass>(json);
 
                 ApplyModification(AppearanceDetail.PROP_MODEL, myObject.PROPMODEL);
                 ApplyModification(AppearanceDetail.MOTOR_MODEL, myObject.MOTORMODEL);
                 ApplyModification(AppearanceDetail.BODY_MODEL, myObject.BODYMODEL);
-            }
-        }
-        i = i + 1;
-    }
-
-
-
+   
 }
+    
+    }
+        
+    
+}
+
 
 
