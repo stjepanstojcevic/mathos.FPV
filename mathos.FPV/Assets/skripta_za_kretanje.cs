@@ -20,9 +20,9 @@ public class skripta_za_kretanje : MonoBehaviour
             new Vector3(tiltAmoundForward, currentYRotation, tiltAmoundSideways)
         );
     }
-    private float nagib=20;
-    private float masa=1;
-    private float snaga=800;
+    private float nagib=10;
+    private float masa=0.8f;
+    private float snaga=1500;
     /*public void masaSlider(float novaMasa)
     {
         masa = novaMasa;
@@ -82,10 +82,10 @@ void MovementUpDown()
     }
     else if (!Input.GetKey(KeyCode.I) && !Input.GetKey(KeyCode.K) && (Mathf.Abs(Input.GetAxis("Vertical")) < .2f && Mathf.Abs(Input.GetAxis("Horizontal")) < 0.2f))
     {
-        upForce = -98.1f * masa;
+        upForce = -198.1f * masa;
     }
 }
-private float movementForwardSpeed = 500.0f;
+private float movementForwardSpeed = 10000.0f;
 private float tiltAmoundForward = 0;
 private float titltVelocityForward;
 void MovementForward()
@@ -93,12 +93,10 @@ void MovementForward()
     if (Input.GetAxis("Vertical") != 0)
     {
         ourDrone.AddRelativeForce(Vector3.forward * Input.GetAxis("Vertical") * movementForwardSpeed);
-        tiltAmoundForward = Mathf.SmoothDamp(tiltAmoundForward, nagib * Input.GetAxis("Vertical"), ref titltVelocityForward, 0.1f);
+        tiltAmoundForward = Mathf.SmoothDamp(tiltAmoundForward, nagib * Input.GetAxis("Vertical") / 2, ref titltVelocityForward, 0.1f);
 
     }
-}
-//tiltAmoundForward, nagib * Input.GetAxis("Vertical") / 2 , ref titltVelocityForward, 0.1f
-
+}   
 private float wantedYRotation;
 [HideInInspector] public float currentYRotation;
 private float rotateAmountByKEys = 2.5f;
