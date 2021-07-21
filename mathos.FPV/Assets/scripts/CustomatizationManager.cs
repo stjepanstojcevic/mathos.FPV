@@ -323,7 +323,8 @@ public class CustomatizationManager : MonoBehaviour
     
     public void DroneModelUp()
     {
-        /*
+        
+        
         if (racunanjedrona == -1)
         {
             PreloadDrone();
@@ -343,7 +344,7 @@ public class CustomatizationManager : MonoBehaviour
                 LoadApperance3();
             else if (racunanjedrona == 3)
                 LoadApperance4();
-        }*/
+        }
     }
 
     public void DroneModelDown()
