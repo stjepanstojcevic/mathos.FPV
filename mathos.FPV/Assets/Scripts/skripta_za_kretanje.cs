@@ -1,6 +1,11 @@
-using UnityEngine;
 using System.Collections;
-using UnityEngine.UI;
+using System.Collections.Generic;
+using UnityEngine;
+using System.Text;
+using System.IO;
+using UnityEngine.SceneManagement;
+
+
 public class skripta_za_kretanje : MonoBehaviour
 {
     Rigidbody ourDrone;
@@ -20,9 +25,11 @@ public class skripta_za_kretanje : MonoBehaviour
             new Vector3(tiltAmoundForward, currentYRotation, tiltAmoundSideways)
         );
     }
+    
     private float nagib=10;
-    private float masa=0.8f;
-    private float snaga=1500;
+    private float masa;
+    masa.GetComponent<CustoCustomatizationManager>().LoadTezinu();
+    private float snaga=800;
     /*public void masaSlider(float novaMasa)
     {
         masa = novaMasa;
@@ -85,7 +92,7 @@ void MovementUpDown()
         upForce = -198.1f * masa;
     }
 }
-private float movementForwardSpeed = 10000.0f;
+private float movementForwardSpeed = 5000.0f;
 private float tiltAmoundForward = 0;
 private float titltVelocityForward;
 void MovementForward()

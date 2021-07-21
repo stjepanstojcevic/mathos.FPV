@@ -35,6 +35,7 @@ public class CustomatizationManager : MonoBehaviour
 
     int i = 0;
     int racunanjedrona = -1;
+    public int ukupna_tezina;
 
     public string myRecepie;
 
@@ -44,6 +45,43 @@ public class CustomatizationManager : MonoBehaviour
     int propIndex = 0;
     int motorIndex = 0;
     int bodyIndex = 0;
+
+    enum motorDetail {
+        motorTezina,
+        motorKV,
+        Maxtorque,
+        MaxThrust,
+        Type
+    }
+    public class MotoClass
+    {
+        public int motorTezina;
+        public int motorKV;
+        public string Maxtorque;
+        public string MaxThust;
+        public string Type;
+    }
+
+    enum frameDetail
+    {   
+        Frametezina,
+        width,
+        Length,
+        Lift_effecent,
+        Drag_coefficient,
+        Type
+    }
+    public class DroneClass
+    {
+        public int Frametezina;
+        public string width;
+        public string Length;
+        public string Lift_effecent;
+        public string Drag_coefficient;
+        public string Type;
+    }
+
+
 
     public void PropModelUp()
     {
@@ -288,7 +326,7 @@ public class CustomatizationManager : MonoBehaviour
         string DroneGlavniPath = m_Path + "/scripts/Json/GlavniDron.json";
         File.WriteAllText(m_Path, json);
     }
-    public void PreloadDrone(){
+    public void PreloadDrone() {
         string m_Path = Application.dataPath;
         m_Path = m_Path + "/scripts/Json/PreloadDrone.json";
         string json = File.ReadAllText(m_Path);
@@ -298,33 +336,18 @@ public class CustomatizationManager : MonoBehaviour
         ApplyModification(AppearanceDetail.PROP_MODEL, myObject.PROPMODEL);
         ApplyModification(AppearanceDetail.MOTOR_MODEL, myObject.MOTORMODEL);
         ApplyModification(AppearanceDetail.BODY_MODEL, myObject.BODYMODEL);
-     
+
         string DroneGlavniPath = m_Path + "/scripts/Json/GlavniDron.json";
         File.WriteAllText(m_Path, json);
-    
-}
-
-
-
-    public void MotoriUcitavanje()
-    {
-
-
-        
-
-
-
-
-
-
 
     }
 
-    
+
+
     public void DroneModelUp()
     {
-        
-        
+
+
         if (racunanjedrona == -1)
         {
             PreloadDrone();
@@ -349,7 +372,7 @@ public class CustomatizationManager : MonoBehaviour
 
     public void DroneModelDown()
     {
-        /*
+
         if (racunanjedrona == -1)
         {
             PreloadDrone();
@@ -375,14 +398,9 @@ public class CustomatizationManager : MonoBehaviour
             {
                 PreloadDrone();
             }
-        }*/
+        }
 
     }
- /*   private void Start()
-    {
-        PreloadDrone();
-    }*/
-
 
     private void Update()
     {
@@ -406,7 +424,102 @@ public class CustomatizationManager : MonoBehaviour
     }
 
 
+    public void izlazak()
+    {
+        Application.Quit();
+    }
+
+
+    MotoClass tezina_motora= new MotoClass();
+
+    public void TezinaMotora1()
+    {
+        tezina_motora.motorTezina = 1;
+        tezina_motora.motorKV = 2400;
+        tezina_motora.Maxtorque = "0.1800Nm";
+        tezina_motora.MaxThust = "1368g";
+        tezina_motora.Type = "1";
+
+
+        string motorjs = JsonUtility.ToJson(tezina_motora);
+
+        string m_Path = Application.dataPath;
+        m_Path = m_Path + "/scripts/Json/Motor1.json";
+        File.WriteAllText(m_Path, motorjs);
+        
+    }
+
+
+    DroneClass myframe = new DroneClass();
+
+    public void TezinaBody1()
+    {
+        myframe.Frametezina = 2;
+        myframe.width = "1cm";
+        myframe.Length = "2cm";
+        myframe.Lift_effecent = "0.0400";
+        myframe.Drag_coefficient = "666.666";
+        myframe.Type = "5";
+
+
+        string Bodyjs = JsonUtility.ToJson(myframe);
+
+        string m_Path = Application.dataPath;
+        m_Path = m_Path + "/scripts/Json/Body1.json";
+        File.WriteAllText(m_Path, Bodyjs);
+    }
+    
+    public int LoadTezinu()
+    {
+        int tezinamoto = 0;
+        int tezinabody = 0;
+        
+        string m_Path = Application.dataPath;
+        m_Path = m_Path + "/scripts/Json/GlavniDron.json";
+        string json = File.ReadAllText(m_Path);
+        myObject = JsonUtility.FromJson<MyClass>(json);
+
+        
+        
+        string moto_Path = Application.dataPath;
+        moto_Path = moto_Path + "/scripts/Json/Motor1.json";
+        string motorjs = File.ReadAllText(moto_Path);
+        tezina_motora = JsonUtility.FromJson<MotoClass>(motorjs);
+
+       string body_Path = Application.dataPath;
+        body_Path = body_Path + "/scripts/Json/Body1.json";
+        string bodyjs = File.ReadAllText(body_Path);
+        myframe = JsonUtility.FromJson<DroneClass>(bodyjs);
+
+        
+        
+        if (myObject.MOTORMODEL==0)
+        {
+            tezinamoto = tezina_motora.motorTezina;
+            tezinabody = myframe.Frametezina;
+            Debug.Log("radi if");
+            Debug.Log(tezinamoto);
+            Debug.Log(tezinabody);
+        }
+
+
+        
+
+
+
+        return ukupna_tezina = tezinamoto + tezinabody;
+    }
+
+    private void Start()
+    {
+        LoadTezinu();
+        Debug.Log(ukupna_tezina);
+        TezinaMotora1();
+
+
+        TezinaBody1();
+    }
+
+
 
 }
-
-
